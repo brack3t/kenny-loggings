@@ -13,7 +13,12 @@ class Logger(object):
     def __init__(self, action, current_obj, previous_obj=None, user=None,
         extras=None):
 
-        if int(action) not in self.actions:
+        try:
+            action = int(action)
+        except ValueError:
+            raise ValueError("Action must be an integer.")
+
+        if action not in self.actions:
             raise Exception("Action must be an integer in %s" %
                 str(self.actions))
         self.action = action
@@ -59,9 +64,9 @@ class Logger(object):
                                 "'%s' in %s is not a valid attribute." % (
                                     step, extra))
 
-                        if not isinstance(getattr(obj, step), object):
-                            raise Exception("'%s' in %s is not an object." % (
-                                step, extra))
+                        if not isinstance(getattr(obj, step), Model):
+                            raise Exception("'%s' in %s is not a subclass of "
+                                "django.db.models.Model." % (step, extra))
 
                         obj = getattr(obj, step)
                 else:
