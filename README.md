@@ -4,7 +4,7 @@ kenny-loggings
 
 A simple Django model event logger.
 
-Documentation: Coming soon
+Documentation: https://kenny-loggings.readthedocs.org/en/latest/
 
 
 CONTRIBUTING
