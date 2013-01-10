@@ -2,10 +2,11 @@
 Contributors
 ============
 
-kenny-loggings Project Lead
-===========================
+kenny-loggings Project Leads
+============================
 
 * Chris Jones <chris@brack3t.com>
+* Kenneth Love <kenneth@brack3t.com>
 
 Contributors
 ============
