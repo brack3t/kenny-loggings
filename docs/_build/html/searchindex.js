@@ -1,0 +1,1 @@
+Search.setIndex({objects:{},terms:{document:0,kenni:0,welcom:0,log:0},objtypes:{},titles:["Welcome to kenny-loggings&#8217;s documentation!"],objnames:{},filenames:["index"]})
