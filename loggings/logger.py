@@ -1,11 +1,12 @@
 from django.core import serializers
 from django.db.models import Model
 
+from loggings import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
 from loggings.models import Log, LogExtra
 
 
 class Logger(object):
-    actions = (1, 2, 3)
+    actions = (ACTION_CREATE, ACTION_UPDATE, ACTION_DELETE)
     extras = None
     previous_obj = None
     user = None

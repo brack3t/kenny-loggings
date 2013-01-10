@@ -1,3 +1,4 @@
+from loggings import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
 from loggings.logger import Logger
 
 
@@ -12,7 +13,7 @@ class LogCreateObjectMixin(LogModelObject):
     Mixin to be used on Django's CreateView class-based view.
     Automatic logging of instance creation.
     """
-    action = 1
+    action = ACTION_CREATE
 
     def form_valid(self, form):
         """
@@ -32,7 +33,7 @@ class LogUpdateObjectMixin(LogModelObject):
     Mixin to be used on Django's UpdateView class-based view.
     Automatic logging of instance updates.
     """
-    action = 2
+    action = ACTION_UPDATE
 
     def form_valid(self, form):
         """
@@ -55,7 +56,7 @@ class LogDeleteObjectMixin(LogModelObject):
     Mixin to be used on Django's DeleteView class-based view.
     Automatic logging of instance deletions.
     """
-    action = 3
+    action = ACTION_DELETE
 
     def delete(self, request, *args, **kwargs):
         """
