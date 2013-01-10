@@ -6,3 +6,4 @@
 Welcome to kenny-loggings's documentation!
 =========================================
 
+Docs coming soon.
