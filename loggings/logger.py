@@ -1,7 +1,7 @@
 from django.core import serializers
 from django.db.models import Model
 
-from . import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
+from .constants import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
 from .models import Log, LogExtra
 
 
