@@ -1,8 +1,8 @@
 from django.core import serializers
 from django.db.models import Model
 
-from loggings import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
-from loggings.models import Log, LogExtra
+from . import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
+from .models import Log, LogExtra
 
 
 class Logger(object):

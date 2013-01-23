@@ -1,5 +1,5 @@
-from loggings import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
-from loggings.logger import Logger
+from . import ACTION_CREATE, ACTION_DELETE, ACTION_UPDATE
+from .logger import Logger
 
 
 class LogModelObject(object):

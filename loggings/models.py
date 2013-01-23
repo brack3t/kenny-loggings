@@ -1,4 +1,10 @@
+try:
+    import json
+except ImportError:
+    from django.utils import simplejson as json
+
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Log(models.Model):
@@ -28,6 +34,26 @@ class Log(models.Model):
             rep = u"%s%s | " % (rep, self.model_name)
 
         return u"%s%s" % (rep, self.timestamp)
+
+    @property
+    def django_user(self):
+        """ Try to return a standard Django user. """
+        try:
+            return User.objects.get(pk=self.user_id)
+        except User.DoesNotExist:
+            return None
+
+    @property
+    def get_current_json_blob(self):
+        """ Return json string of current blob. """
+        return json.dumps(self.current_json_blob)
+
+    @property
+    def get_previous_json_blob(self):
+        """ Return json string of previous blob. """
+        if self.previous_json_blob:
+            return json.dumps(self.previous_json_blob)
+        return None
 
 
 class LogExtra(models.Model):
