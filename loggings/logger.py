@@ -12,7 +12,7 @@ class Logger(object):
     user = None
 
     def __init__(self, action, current_obj, previous_obj=None, user=None,
-        extras=None):
+                 extras=None):
 
         try:
             action = int(action)
@@ -20,8 +20,8 @@ class Logger(object):
             raise ValueError("Action must be an integer.")
 
         if action not in self.actions:
-            raise Exception("Action must be an integer in %s" %
-                str(self.actions))
+            raise Exception(
+                "Action must be an integer in {0}".format(self.actions))
         self.action = action
 
         if not isinstance(current_obj, Model):
@@ -34,16 +34,16 @@ class Logger(object):
                     "previous_obj must be a Django model instance.")
 
             if (previous_obj._meta.app_label !=
-                self.current_obj._meta.app_label):
+                    self.current_obj._meta.app_label):
 
                 raise Exception("current_obj and previous_obj must be from "
-                    "the same Django app.")
+                                "the same Django app.")
 
             if (previous_obj._meta.object_name !=
-                self.current_obj._meta.object_name):
+                    self.current_obj._meta.object_name):
 
                 raise Exception("current_obj and previous_obj must be "
-                    "instances of the same Django model.")
+                                "instances of the same Django model.")
 
             self.previous_obj = previous_obj
 
@@ -66,14 +66,16 @@ class Logger(object):
                                     step, extra))
 
                         if not isinstance(getattr(obj, step), Model):
-                            raise Exception("'%s' in %s is not a subclass of "
-                                "django.db.models.Model." % (step, extra))
+                            raise Exception(
+                                "'{0}' in {1} is not a subclass of "
+                                "django.db.models.Model.".format(step, extra))
 
                         obj = getattr(obj, step)
                 else:
                     if not hasattr(self.current_obj, extra):
-                        raise Exception("The attribute '%s' does not "
-                            "exist on the current instance." % extra)
+                        raise Exception(
+                            "The attribute '{0}' does not exist on the "
+                            "current instance.".format(extra))
 
             self.extras = extras
 
@@ -117,3 +119,5 @@ class Logger(object):
 
         if self.extras:
             self._create_extra_logs(log)
+
+        return log
