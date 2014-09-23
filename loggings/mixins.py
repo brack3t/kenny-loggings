@@ -7,6 +7,9 @@ class LogModelObject(object):
     action = None
     log_extras = None
 
+    def get_log_extras(self):
+        return self.log_extras
+
 
 class LogCreateObjectMixin(LogModelObject):
     """
@@ -23,7 +26,7 @@ class LogCreateObjectMixin(LogModelObject):
         response = super(LogCreateObjectMixin, self).form_valid(form)
 
         Logger(self.action, self.object, user=self.request.user,
-            extras=self.log_extras).create()
+               extras=self.get_log_extras()).create()
 
         return response
 
@@ -46,7 +49,7 @@ class LogUpdateObjectMixin(LogModelObject):
         response = super(LogUpdateObjectMixin, self).form_valid(form)
 
         Logger(self.action, self.object, old_object, user=self.request.user,
-            extras=self.log_extras).create()
+               extras=self.get_log_extras()).create()
 
         return response
 
@@ -66,7 +69,7 @@ class LogDeleteObjectMixin(LogModelObject):
         self.object = self.get_object()
 
         Logger(self.action, self.object, user=request.user,
-            extras=self.log_extras).create()
+               extras=self.get_log_extras()).create()
 
-        return super(LogDeleteObjectMixin, self).delete(request, *args,
-            **kwargs)
+        return super(LogDeleteObjectMixin, self).delete(
+            request, *args, **kwargs)
