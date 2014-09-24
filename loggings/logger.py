@@ -121,3 +121,20 @@ class Logger(object):
             self._create_extra_logs(log)
 
         return log
+
+    @classmethod
+    def create_manual_extra(cls, log_id, field_name, field_value):
+        """
+        Allows you to manually create a log extra. This is useful in
+        situations where you are dealing with GenericForeignKeys.
+
+        * log_id = primary key of the log you will link to.
+        * field_name = The name of the field you are linking to.
+        * field_value = The value, usually a primary key of the object you
+                        wish to reference.
+        """
+        log = Log.objects.get(pk=log_id)
+
+        extra = LogExtra.objects.create(
+            log_id=log.pk, field_name=field_name, field_value=field_value)
+        return extra
