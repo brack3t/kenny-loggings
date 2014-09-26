@@ -8,6 +8,7 @@ class LogModelObject(object):
     log_extras = None
 
     def get_log_extras(self):
+        """ Override to constuct the log_extras programatically. """
         return self.log_extras
 
 
