@@ -2,11 +2,11 @@ from setuptools import setup
 
 setup(
     name="kenny-loggings",
-    version="0.1.3",
+    version="1.0.0",
     description="A simple Django model event logger.",
     long_description="A simple Django model event logger.",
     keywords="python, django, logging",
-    author="Chris Jones <chris@brack3t.com>, Kenneth Love <kenneth@brack3t.com>",
+    author="Chris Jones <chris@brack3t.com>",
     author_email="chris@brack3t.com",
     url="https://github.com/brack3t/kenny-loggings",
     license="BSD",
