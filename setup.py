@@ -1,8 +1,10 @@
 from setuptools import setup
 
+import loggings
+
 setup(
     name="kenny-loggings",
-    version="1.0.0",
+    version=loggings.__version__,
     description="A simple Django model event logger.",
     long_description="A simple Django model event logger.",
     keywords="python, django, logging",
