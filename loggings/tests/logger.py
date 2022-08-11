@@ -32,8 +32,13 @@ class LoggerTests(TestCase):
         prev = Blog(title="old test", body="old testing")
         prev.pk = 1
 
-        log = Logger(1, blog, previous_obj=prev, user=get_user(),
-            extras=["title"])
+        log = Logger(
+            1,
+            blog,
+            previous_obj=prev,
+            user=get_user(),
+            extras=["title"]
+        )
 
         self.assertIsInstance(log, Logger)
 
@@ -55,37 +60,47 @@ class LoggerTests(TestCase):
         with self.assertRaises(Exception) as ex:
             Logger(100, blog)
 
-        self.assertEqual(ex.exception.message,
-            "Action must be an integer in %s" % str(Logger.actions))
+        self.assertEqual(
+            ex.exception.message,
+            "Action must be an integer in %s" % str(Logger.actions)
+        )
         ex = None
 
         with self.assertRaises(TypeError) as ex:
             Logger(1, some_obj)
 
-        self.assertEqual(ex.exception.message,
-            "current_obj must be a Django model instance.")
+        self.assertEqual(
+            ex.exception.message,
+            "current_obj must be a Django model instance."
+        )
         ex = None
 
         with self.assertRaises(TypeError) as ex:
             Logger(1, blog, previous_obj=some_obj)
 
-        self.assertEqual(ex.exception.message,
-            "previous_obj must be a Django model instance.")
+        self.assertEqual(
+            ex.exception.message,
+            "previous_obj must be a Django model instance."
+        )
         ex = None
 
         with self.assertRaises(Exception) as ex:
             Logger(1, blog, previous_obj=get_user())
 
-        self.assertEqual(ex.exception.message,
-            "current_obj and previous_obj must be from the same Django app.")
+        self.assertEqual(
+            ex.exception.message,
+            "current_obj and previous_obj must be from the same Django app."
+        )
         ex = None
 
         with self.assertRaises(Exception) as ex:
             Logger(1, blog, previous_obj=not_blog)
 
-        self.assertEqual(ex.exception.message,
+        self.assertEqual(
+            ex.exception.message,
             "current_obj and previous_obj must be instances of the same "
-            "Django model.")
+            + "Django model."
+        )
         ex = None
 
         with self.assertRaises(TypeError) as ex:
@@ -97,21 +112,27 @@ class LoggerTests(TestCase):
         with self.assertRaises(Exception) as ex:
             Logger(1, blog, extras=["fail__fail"])
 
-        self.assertEqual(ex.exception.message,
-            "'fail' in fail__fail is not a valid attribute.")
+        self.assertEqual(
+            ex.exception.message,
+            "'fail' in fail__fail is not a valid attribute."
+        )
         ex = None
 
         with self.assertRaises(Exception) as ex:
             Logger(1, blog, extras=["fail"])
 
-        self.assertEqual(ex.exception.message,
-            "The attribute 'fail' does not exist on the current instance.")
+        self.assertEqual(
+            ex.exception.message,
+            "The attribute 'fail' does not exist on the current instance."
+        )
         ex = None
 
         with self.assertRaises(Exception) as ex:
             Logger(1, blog, extras=["title__fail"])
 
-        self.assertEqual(ex.exception.message,
+        self.assertEqual(
+            ex.exception.message,
             "'title' in title__fail is not a subclass of "
-            "django.db.models.Model.")
+            + "django.db.models.Model."
+        )
         ex = None
