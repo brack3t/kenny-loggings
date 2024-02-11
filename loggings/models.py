@@ -28,7 +28,7 @@ class Log(models.Model):
         default='',
         max_length=255
     )
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True, db_index=True)
     previous_json_blob = models.TextField(blank=True, default='')
     current_json_blob = models.TextField(blank=True, default='')
     user_id = models.IntegerField(blank=True, null=True)
