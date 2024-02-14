@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 class Log(models.Model):
     """ Log model """
-    action = models.SmallIntegerField()
+    action = models.SmallIntegerField(db_index=True)
     app_name = models.CharField(
         blank=True,
         db_index=True,
